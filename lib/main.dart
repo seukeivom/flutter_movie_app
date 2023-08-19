@@ -5,6 +5,7 @@ import 'package:movie_app/widgets/trending.dart';
 import 'package:movie_app/widgets/tv.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 import 'dart:developer' as developer;
+import 'api_key.dart';
 
 void main() => runApp(const MyApp());
 
@@ -33,9 +34,6 @@ class _HomeState extends State<Home> {
   List topRatedMovies = [];
   List tv = [];
 
-  final String apiKey = '3d759a38124b2e67dff38af7a570016e';
-  final readAccessToken =
-      'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZDc1OWEzODEyNGIyZTY3ZGZmMzhhZjdhNTcwMDE2ZSIsInN1YiI6IjYyYWEwMGIyMjJhZjNlNTIxNDFmMDU5MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.aks2Jiz6wlonfclYVOUX9jJ9Tm7mi4uVnfpZZ9CwVdg';
 
   @override
   void initState() {
