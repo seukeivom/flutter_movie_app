@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/description.dart';
 import 'package:movie_app/utils/text.dart';
 
 class TopRated extends StatelessWidget {
@@ -27,7 +28,25 @@ class TopRated extends StatelessWidget {
               itemCount: toprated.length,
               itemBuilder: (context, index) {
                 return InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Description(
+                          name: toprated[index]['title'] ??
+                              toprated[index]['name'],
+                          description: toprated[index]['overview'],
+                          bannerUrl:
+                              'https://image.tmdb.org/t/p/w500${toprated[index]['backdrop_path']}',
+                          posterUrl:
+                              'https://image.tmdb.org/t/p/w500${toprated[index]['poster_path']}',
+                          vote: toprated[index]['vote_average'].toString(),
+                          launchDate: toprated[index]['release_date'] ??
+                              toprated[index]['first_air_date'],
+                        ),
+                      ),
+                    );
+                  },
                   child: SizedBox(
                     width: 140,
                     child: Column(

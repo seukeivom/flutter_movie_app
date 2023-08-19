@@ -30,19 +30,22 @@ class TrendingMovies extends StatelessWidget {
                 return InkWell(
                   onTap: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Description(
-                                  name: trending[index]['title'] ??
-                                      trending[index]['name'],
-                                  description: trending[index]['overview'],
-                                  bannerUrl: 'https://image.tmdb.org/t/p/w500${trending[index]['backdrop_path']}',
-                                  posterUrl: 'https://image.tmdb.org/t/p/w500${trending[index]['poster_path']}',
-                                  vote: trending[index]['vote_average']
-                                      .toString(),
-                                  launchDate: trending[index]['release_date'] ??
-                                      trending[index]['first_air_date'],
-                                )));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Description(
+                          name: trending[index]['title'] ??
+                              trending[index]['name'],
+                          description: trending[index]['overview'],
+                          bannerUrl:
+                              'https://image.tmdb.org/t/p/w500${trending[index]['backdrop_path']}',
+                          posterUrl:
+                              'https://image.tmdb.org/t/p/w500${trending[index]['poster_path']}',
+                          vote: trending[index]['vote_average'].toString(),
+                          launchDate: trending[index]['release_date'] ??
+                              trending[index]['first_air_date'],
+                        ),
+                      ),
+                    );
                   },
                   child: SizedBox(
                     width: 140,

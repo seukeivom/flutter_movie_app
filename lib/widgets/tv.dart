@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/description.dart';
 import 'package:movie_app/utils/text.dart';
 
 class TV extends StatelessWidget {
@@ -27,7 +28,26 @@ class TV extends StatelessWidget {
               itemCount: tv.length,
               itemBuilder: (context, index) {
                 return InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Description(
+                          name: tv[index]['title'] ?? tv[index]['name'],
+                          description: tv[index]['overview'] == ""
+                              ? "No description provided for this show"
+                              : tv[index]['overview'],
+                          bannerUrl:
+                              'https://image.tmdb.org/t/p/w500${tv[index]['backdrop_path']}',
+                          posterUrl:
+                              'https://image.tmdb.org/t/p/w500${tv[index]['poster_path']}',
+                          vote: tv[index]['vote_average'].toString(),
+                          launchDate: tv[index]['release_date'] ??
+                              tv[index]['first_air_date'],
+                        ),
+                      ),
+                    );
+                  },
                   child: Container(
                     padding: const EdgeInsets.all(5),
                     width: 250,
