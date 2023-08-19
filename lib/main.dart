@@ -4,6 +4,7 @@ import 'package:movie_app/widgets/toprated.dart';
 import 'package:movie_app/widgets/trending.dart';
 import 'package:movie_app/widgets/tv.dart';
 import 'package:tmdb_api/tmdb_api.dart';
+import 'dart:developer' as developer;
 
 void main() => runApp(const MyApp());
 
@@ -59,7 +60,7 @@ class _HomeState extends State<Home> {
       tv = tvResult['results'];
     });
 
-    print(tv);
+    developer.log(trendingMovies.toString());
   }
 
   @override

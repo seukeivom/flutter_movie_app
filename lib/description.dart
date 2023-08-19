@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/utils/text.dart';
 
 class Description extends StatelessWidget {
-  const Description({super.key, required this.name, required this.description, required this.bannerUrl, required this.posterUrl, required this.vote, required this.launchDate});
+  const Description(
+      {super.key,
+      this.name = 'Not Loaded',
+      required this.description,
+      required this.bannerUrl,
+      required this.posterUrl,
+      required this.vote,
+      required this.launchDate});
 
   final String name, description, bannerUrl, posterUrl, vote, launchDate;
 
@@ -10,29 +17,72 @@ class Description extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Container(
-        child: ListView(
-          children: [
-            Container(
-              height: 250,
-              child: Stack(
-                children: [
-                  Positioned(
-                    child: Container(
-                      height: 250,
-                      width: MediaQuery.of(context).size.width,
-                      child: Image.network(
-                        bannerUrl,
-                        fit: BoxFit.cover,
-                      ),
+      body: ListView(
+        children: [
+          SizedBox(
+            height: 250,
+            child: Stack(
+              children: [
+                Positioned(
+                  child: SizedBox(
+                    height: 250,
+                    width: MediaQuery.of(context).size.width,
+                    child: Image.network(
+                      bannerUrl,
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  Positioned(child: ModifiedText(text: 'Average rating - '+vote))
-                ],
-              ),
-            )
-          ],
-        ),
+                ),
+                Positioned(
+                    bottom: 10,
+                    child: ModifiedText(
+                      text: ' ⭐ Average rating - $vote',
+                      size: 18,
+                    ))
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Container(
+            padding: const EdgeInsets.all(10),
+            child: ModifiedText(
+              text: name,
+              size: 24,
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.only(left: 10),
+            child: ModifiedText(
+              text: 'Releasing on - $launchDate',
+              size: 14,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 5),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 5),
+                  height: 200,
+                  width: 100,
+                  child: Image.network(
+                    posterUrl,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Expanded(
+                  child: ModifiedText(
+                    text: description,
+                    size: 18,
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

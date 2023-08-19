@@ -42,8 +42,7 @@ class TV extends StatelessWidget {
                               image: DecorationImage(
                                   fit: BoxFit.cover,
                                   image: NetworkImage(
-                                      'https://image.tmdb.org/t/p/w500' +
-                                          tv[index]['poster_path']))),
+                                      'https://image.tmdb.org/t/p/w500${tv[index]['poster_path']}'))),
                         ),
                         const SizedBox(
                           height: 10,

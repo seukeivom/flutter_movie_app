@@ -37,8 +37,7 @@ class TopRated extends StatelessWidget {
                           decoration: BoxDecoration(
                               image: DecorationImage(
                                   image: NetworkImage(
-                                      'https://image.tmdb.org/t/p/w500' +
-                                          toprated[index]['poster_path']))),
+                                      'https://image.tmdb.org/t/p/w500${toprated[index]['poster_path']}'))),
                         ),
                         Expanded(
                           child: ModifiedText(

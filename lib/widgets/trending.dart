@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/description.dart';
 import 'package:movie_app/utils/text.dart';
 
 class TrendingMovies extends StatelessWidget {
@@ -27,7 +28,22 @@ class TrendingMovies extends StatelessWidget {
               itemCount: trending.length,
               itemBuilder: (context, index) {
                 return InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Description(
+                                  name: trending[index]['title'] ??
+                                      trending[index]['name'],
+                                  description: trending[index]['overview'],
+                                  bannerUrl: 'https://image.tmdb.org/t/p/w500${trending[index]['backdrop_path']}',
+                                  posterUrl: 'https://image.tmdb.org/t/p/w500${trending[index]['poster_path']}',
+                                  vote: trending[index]['vote_average']
+                                      .toString(),
+                                  launchDate: trending[index]['release_date'] ??
+                                      trending[index]['first_air_date'],
+                                )));
+                  },
                   child: SizedBox(
                     width: 140,
                     child: Column(
@@ -37,12 +53,12 @@ class TrendingMovies extends StatelessWidget {
                           decoration: BoxDecoration(
                               image: DecorationImage(
                                   image: NetworkImage(
-                                      'https://image.tmdb.org/t/p/w500' +
-                                          trending[index]['poster_path']))),
+                                      'https://image.tmdb.org/t/p/w500${trending[index]['poster_path']}'))),
                         ),
                         Expanded(
                           child: ModifiedText(
-                              text: trending[index]['title'] ?? 'Loading'),
+                              text: trending[index]['title'] ??
+                                  trending[index]['name']),
                         )
                       ],
                     ),
